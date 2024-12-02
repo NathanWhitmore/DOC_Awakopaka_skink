@@ -4,7 +4,7 @@ library(arm)
 library(AICcmodavg)
 
 # Simulate data
-set.seed(123)
+# set.seed(123)
 n_sites <- 78  # Number of sites
 n_visits <- 5   # Number of visits per site
 
@@ -52,13 +52,13 @@ model_names <- c("Null", "Temp")
 aictable <- aictab(model_list, model_names)
 
 # Summary of the model
-summary(fit)
+summary(fit1)
 
 # diagnostics
-Nmix.gof.test(fit1, nsim = 100)
+# Nmix.gof.test(fit1, nsim = 100)
 
-exp( -0.932 ) * 78
-exp( -0.932 + 0.59) * 78
-exp( -0.932 - 0.59) * 78
+exp( -0.889) * 78
+exp( -0.889 + 1.27) * 78
+exp( -0.889 - 1.27) * 78
 
 

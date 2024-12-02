@@ -1,0 +1,159 @@
+\documentclass{article}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{makeidx}
+\usepackage{multicol}
+\usepackage{sectsty}
+\usepackage[colorlinks = true,
+            linkcolor = blue,
+            urlcolor  = blue,
+            citecolor = blue,
+            anchorcolor = green]{hyperref}
+
+\usepackage{rotating}            
+\usepackage{pdflscape}     
+            
+\usepackage{natbib}
+\setcitestyle{aysep={}} 
+\bibliographystyle{apalike}
+
+
+% my ammendments
+\usepackage{xcolor}
+\usepackage[noae]{Sweave}
+\usepackage{bookman}
+\usepackage{titlesec}
+\usepackage{pdflscape}
+\usepackage[font=small,labelfont=bf]{caption}
+
+\usepackage{sectsty} % sets colour of chapters
+\allsectionsfont{\sffamily \mdseries\color{blue!20!black!30!green}} 
+%\sectionfont{\color{purple}}
+
+\setkeys{Gin}{width=0.9\textwidth}
+
+
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{shaded}}{\end{shaded}}
+
+\newcommand{\mytilde}{\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}}
+
+
+
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+
+% title page
+\begin{titlepage}
+\vspace*{\stretch{1.0}}
+
+
+
+\noindent\normalsize\textsf{A report prepared for:} 
+
+\vspace{3mm}
+
+\noindent\normalsize\textsf{\textbf{Department of Conservation}}
+
+\begin{center}
+\vspace{20mm}
+
+{\fontfamily{ppl}\selectfont
+    \textcolor{blue!20!black!30!green}{\Large\Huge{\textsf{\textbf{Monitoring Awak\=opaka}
+}}}}
+
+\vspace{3mm}
+
+
+
+\end{center}
+
+\vspace{80mm}
+
+\begin{flushright}
+\noindent\textbf{\textsf{Nathan Whitmore}}\\
+
+
+
+\noindent \textsf{nathan@reproducible.co.nz}\\
+\noindent \textsf{2 December 2024}
+
+\end{flushright}
+
+\vspace{5mm}
+
+
+\vspace*{\stretch{2.0}}
+
+\end{titlepage}
+
+
+
+
+
+
+\section*{Summary}
+
+\begin{shaded}
+
+\noindent The monitoring of Awak\=opaka skinks is likely to be extremely challenging. This skink species has one of the lowest detection probabilities ever observed. For this reason the initial monitoring design should be undertaken to allow the maximum amount of monitoring flexibilityincluding the use of: count based indices, occupancy methods, N-mixture models, and variable detection mark-recapture. Given the information at hand,  N-mixture modelling and occupancy modelling look to have the greatest potential. It is recommended that a nested spatial approach be undertaken in order to allow for aggregation and redunancy.
+
+\end{shaded}
+
+
+
+\section*{Background}
+
+The monitoring of Awak\=opaka 
+
+\section*{Purpose}
+
+This document was commissioned by DOC to guide the design of a monitoring program for Awak\=opaka skinks .
+
+\section*{Analysis}
+
+All analyses, graphing, and examination of model diagnostics occurred in program R (version 4.2.1) \citep{rcoreteam} with additional functionality provided by the packages: 'arm` \citep{arm}, `sf' \citep{sf}, `tidyverse' \citep{tidyverse}, and 'unmarked` \citep{unmarked}.
+
+While the `unmarked` R package was used in this analysis (for reasons of program R integration)  I recommend that DOC staff use program "PRESENCE" \footnote{\url{https://www.mbr-pwrc.usgs.gov/software/presence.shtml}} for analysing any forthcoming field data due to the user friendly and well-documented nature of the software.
+
+\section*{Estimation of latent detection probability}
+
+
+ \begin{figure}[h]
+\centering
+     \includegraphics[width=10cm, height=10cm,keepaspectratio]{"Nested scale grid.png"}%
+
+     \caption{The effective detection probability given different numbers of pitfall traps per sampling unit.}
+     
+     \label{detection}
+     
+ \end{figure}
+ 
+ \vspace{5mm}
+
+\section*{Sampling units} 
+
+If we assume that it is appropriate to divide the translocation site into 5 x 5 m grid cells and we remove the cells identified by Kate Simister that represent non-habitat (i.e. a 15--20 m strip of thick vegetation in the middle of the area that is intended to slow the dispersal of animals) then we have 46 occupancy units (Figure \ref{units}). As the site is long and thin in order to maximise the number of cells created by gridding up the area of interest I retained any cells which $>$ 23 m\textsuperscript{2} in area.
+
+
+\section*{Number of surveys} 
+
+The number of surveys required to optimise detection probability was simulated in program R via the "unmarked" package through the construction of matrices based on a detection probability of 0.55 (corresponding to 3 pitfall traps per sampling unit), 46 sampling units, and an occupancy rate of 0.30 (assuming background occupancy will be low but not entirely absent), and 1,000 iterations. The resultant distributions show that improvement in estimation of detection probability attenuates in a diminishing fashion, with little improvement beyond 5 surveys per monitoring session (Figure \ref{survey3pit}).
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
