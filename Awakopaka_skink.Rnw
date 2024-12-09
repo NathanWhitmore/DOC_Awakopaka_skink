@@ -102,53 +102,208 @@
 
 \begin{shaded}
 
-\noindent The monitoring of Awak\=opaka skinks is likely to be extremely challenging. This skink species has one of the lowest detection probabilities ever observed. For this reason the initial monitoring design should be undertaken to allow the maximum amount of monitoring flexibilityincluding the use of: count based indices, occupancy methods, N-mixture models, and variable detection mark-recapture. Given the information at hand,  N-mixture modelling and occupancy modelling look to have the greatest potential. It is recommended that a nested spatial approach be undertaken in order to allow for aggregation and redunancy.
+\noindent The monitoring of Awak\=opaka skinks is likely to be extremely challenging. This skink species has one of the lowest apparent detection probabilities ever observed. For this reason the initial monitoring design should be undertaken to allow the maximum amount of monitoring flexibility including the potential future use of: count based indices, occupancy methods, N-mixture models, and variable detection mark-recapture. Given the information at hand, occupancy and  N-mixture modelling modelling look to have the greatest potential. It is recommended that a nested spatial approach be undertaken in order to allow for aggregation and redundancy.
+
 
 \end{shaded}
 
 
+\section*{Background \& Purpose}
 
-\section*{Background}
+This document was commissioned by DOC to guide the design of a monitoring program for Awak\=opaka skinks (\emph{Oligosoma awakopaka}). Awak\=opaka skinks were only discovered in 2014 from a small area of rugged boulder habitat near the Homer Saddle. Fewer than than 20 individuals have been located to date. The most recent survey using Gee's minnow traps only detected four individuals from 208 trap nights (over 5 days of surveying).  Given the low apparent detection probability the question becomes what monitoring avenues could produce an estimate that could form the basis of longer-term monitoring? 
 
-The monitoring of Awak\=opaka 
+\vspace{3mm}
 
-\section*{Purpose}
+\noindent There are four methodologies which could be considered within the project budget:
 
-This document was commissioned by DOC to guide the design of a monitoring program for Awak\=opaka skinks .
+\begin{enumerate}
+  \item \textbf{Count based index monitoring}
+  \begin{itemize}
+  \item Advantages: cheap and familiar, ideally can be analysed via generalised linear modelling (GLM). It does not rely on individual identification or recaptures.
+  \item Disadvantages: it is a relative rather than absolute measure of abundance.This method does not explicitly account for changes in detection probabilities (e.g. due to weather or habitat). Without accounting for these factors, comparisons of counts across time and space can be misleading. Given the low detection probability, issues of zero inflation (too many unexpected zeros) can be expected arise which demands more complicated modelling.
+   \end{itemize}
 
-\section*{Analysis}
+\newpage
+   
+  \item \textbf{Mark-recapture via the robust design}
+  \begin{itemize}
+  \item Advantages: results in an absolute abundance estimate and therefore is easy to interpret. As this method explicitly accounts for differences in detection probability it leads to more accurate and unbiased estimates of population size, as well as giving rise to annual survival estimates.
+  \item Disadvantages: the method, as the name suggests, requires recaptures. If the detection probability is too low no recaptures will occur and the method cannot be used. A low rate of recaptures can result in uninformative estimates due to large error margins and higher expected volatility of the accompanying point estimate.  
+   \end{itemize}
+   
+     \item \textbf{Occupancy methods}
+  \begin{itemize}
+  \item Advantages: results in a spatial understanding of the area occupied by the focal species, over multiple years this extends to estimating patch colonisation and extinction rates. As the habitat unit is user defined the monitoring resolution can be easily adjusted to suit the project budget, area, and territory size of the species. It does not rely on individual identification or recaptures. This method is particularly useful for species with low detection probabilities or cryptic behaviors, where abundance estimation is impractical
+  \item Disadvantages: many wildlife biologists find occupancy less tangible as a metric than  abundance. Occupancy has a tendancy to be less sensitive than mark-recapture when more than one animal occupies a spatial unit. 
+   \end{itemize}
+   
 
-All analyses, graphing, and examination of model diagnostics occurred in program R (version 4.2.1) \citep{rcoreteam} with additional functionality provided by the packages: 'arm` \citep{arm}, `sf' \citep{sf}, `tidyverse' \citep{tidyverse}, and 'unmarked` \citep{unmarked}.
+     \item \textbf{N-mixture models}
+  \begin{itemize}
+  \item Advantages: N-mixture models provide an estimate of absolute abundance based on repeated counts, while explicitly accounting for imperfect detection probability, which makes them more reliable and tangible than raw count-based indices. 
+  \item Disadvantages: without individual identification, detection probability is inferred indirectly, making it more susceptible to confounding with other factors (e.g. observer error or habitat effects) than in mark-recapture models. These models rely on the observed variation in counts across repeated visits to separate detection probability from true abundance. These models are known to be sensitive to overdispersion in the count data, which can lead to biased or imprecise estimates.
+   \end{itemize}
+   
 
-While the `unmarked` R package was used in this analysis (for reasons of program R integration)  I recommend that DOC staff use program "PRESENCE" \footnote{\url{https://www.mbr-pwrc.usgs.gov/software/presence.shtml}} for analysing any forthcoming field data due to the user friendly and well-documented nature of the software.
+\noindent \textbf{Importantly}, both N-mixture models and count-based indices rely more heavily than the other two methods on accurate modeling of covariates (such as weather and habitat). Since these methods do not directly estimate detection probability, they depend on accurately measuring factors that influence detection to account for their potential effects on counts.
 
-\section*{Estimation of latent detection probability}
+\end{enumerate}
+
+
+\section*{Monitoring issues}
+
+\subsection*{Mark-recapture: threat of no recapture}
+
+If we assume that the detection probability of individual \emph{Oligosoma awakopaka} skinks likely falls somewhere between 0 and 0.1, and there are more than five animals in the survey area then we can assess the rate of abject failure of the mark-recapture methodology solely in terms of the probability of getting no recaptures across a variable number of surveys (Figure \ref{fig:failure}). Even when considered as a simple average across these scenarios (Table \ref{tab:meanfail}), a very optimistic situation, the failure rate is likely too high for to depend solely upon mark-recapture for population monitoring. 
+
+\vspace{3mm}
+
+\begin{landscape}
+ \begin{figure}[h]
+\centering
+     \includegraphics[width=20cm, keepaspectratio]{"Probabilty of abject failure2.png"}%
+
+     \caption{The probability of abject failure of  mark-recapture due to an absence of recaptures across a variable number of surveys, abundances, and detection probabilities.}
+     
+     \label{fig:failure}
+     
+ \end{figure}
+\end{landscape}
+
+
+\begin{table}
+
+
+     \caption{The mean probability of recording no recaptures across a variable number of consective surveys}
+     \label{tab:meanfail}
+\centering
+\begin{tabular}{|l|r|}
+\hline
+\textbf{No. surveys} & \textbf{Mean failure rate (\%)}\\
+\hline
+1 & 49.4\\
+\hline
+2 & 31.4\\
+\hline
+3 & 22.8\\
+\hline
+4 & 17.8\\
+\hline
+5 & 14.6\\
+\hline
+6 & 12.4\\
+\hline
+7 & 10.7\\
+\hline
+8 & 9.5\\
+\hline
+9 & 8.5\\
+\hline
+10 & 7.7\\
+\hline
+\end{tabular}
+\end{table}
+
+
+
+\subsection*{Occupancy}
+
+In order for occupancy methods to work the monitoring area has to be practical. Certain authors have advocated that  habitat units should be at the scale of territories, however this is contentious with other authors (such as Darryl MacKenzie) suggesting that is also appropriate to consider occupancy in terms of "use" rather than proxy territories. Regardless, you want your spatial units to larger enough to be repeatedly encounter the species should it be in the general vicinity. If units are too small then then the possibility of repeated detection became very low -- a situation not dissimilar to not recapturing individuals in mark-recapture.
+
+If we use the polygon of the monitoring area as a guide and assume the an appropriate spatial unit is at 15 $\times$ 15 m (more-or-less equivalent to the current bait station spacing) then the area could accommodate 36 units. Each of these units could be further divided into 4 quadrants of 7.5 $\times$ 7.5 m, giving rise to 144 units (Figure \ref{fig:grid}).
+
 
 
  \begin{figure}[h]
 \centering
-     \includegraphics[width=10cm, height=10cm,keepaspectratio]{"Nested scale grid.png"}%
+     \includegraphics[width=20cm, height=10cm,keepaspectratio]{"Nested scale grid.png"}%
 
      \caption{The effective detection probability given different numbers of pitfall traps per sampling unit.}
      
-     \label{detection}
+     \label{fig:grid}
      
  \end{figure}
+
  
  \vspace{5mm}
+ 
+ 
+\subsection*{What might the true occupancy probability be?}
 
-\section*{Sampling units} 
+Based on an apparent detection rate of 4 individuals/208 trap nights across 47 Gee's minnow traps we can naively reinterpret the observed detection as being the product of the species being available for detection and the area in question being occupied (Figure \ref{fig:naive}). If we exclude the possibility that there is very high detection (as this should have resulted in some recaptures in previous surveys), and assume that the real detection rate although low, approximates that seen in the Alborn skink, and that individuals have exclusive territories then this may suggest that \mytilde 21\% of the area may be occupied.
 
-If we assume that it is appropriate to divide the translocation site into 5 x 5 m grid cells and we remove the cells identified by Kate Simister that represent non-habitat (i.e. a 15--20 m strip of thick vegetation in the middle of the area that is intended to slow the dispersal of animals) then we have 46 occupancy units (Figure \ref{units}). As the site is long and thin in order to maximise the number of cells created by gridding up the area of interest I retained any cells which $>$ 23 m\textsuperscript{2} in area.
+ \begin{figure}[h]
+\centering
+     \includegraphics[width=20cm, height=10cm,keepaspectratio]{"Detection probability.png"}%
+
+     \caption{The options for possible.}
+     
+     \label{fig:naive}
+     
+ \end{figure}
+
+ 
+ \vspace{5mm}
+ 
+ \clearpage
+ 
+ \subsection*{Occupancy simulation}
+ 
+ I simulated a single season of occupancy modelling using \emph{p} = 0.09, \emph{psi} = 0.21, at 36 sites, varying from 2 to 10 surveys. Each scenario was simulated 1,000 times. 
+ 
+ Estimates of detection and occupancy rate only start to show a tendancy towards the true value around the sixth survey (Figure \ref{fig:simdet} \& \ref{fig:simpsi}). While detection probability is largely unambiguous (Figure \ref{fig:simdet}), the occupancy probability is bimodal, peaking after the sixth survey about the mean and 1 (Figure \ref{fig:simpsi}). The continual (although diminishing) peak at 1 appears to be relate to simulations which result in abnormally low detection rates (typically < 0.02). Under such circumstances the model tries to reconcile imperfect detection by inflating the occupancy rate. To counter such developments there are three courses of action:
+ 
+\begin{enumerate}
+  \item Employ a field protocol that increases detection probability.
+  \item Employ occupancy models which explicitly model covariates that track detection probability (e.g. temperature).
+  \item Employ Bayesian statistical methods which help constrain the detection probability to sensible values.
+\end{enumerate}
+
+ 
+\begin{figure}[h]
+\centering
+     \includegraphics[width=20cm, height=10cm,keepaspectratio]{"Occupancy detection.png"}%
+     \caption{Occupancy: Simulated detection rates.}
+     \label{fig:simdet}
+     
+\end{figure}
+
+ 
+\begin{figure}[h]
+\centering
+     \includegraphics[width=20cm, height=10cm,keepaspectratio]{"Occupancy  psi.png"}%
+     \caption{Occupancy: Simulated occupancy rates.}
+     \label{fig:simpsi}
+     
+\end{figure}
+
+\subsubsection*{Advantages of a nested spatial layout}
 
 
-\section*{Number of surveys} 
+The nesting of the 144 units within a greater 36 unit nested spatial layout has numerous advantages:
 
-The number of surveys required to optimise detection probability was simulated in program R via the "unmarked" package through the construction of matrices based on a detection probability of 0.55 (corresponding to 3 pitfall traps per sampling unit), 46 sampling units, and an occupancy rate of 0.30 (assuming background occupancy will be low but not entirely absent), and 1,000 iterations. The resultant distributions show that improvement in estimation of detection probability attenuates in a diminishing fashion, with little improvement beyond 5 surveys per monitoring session (Figure \ref{survey3pit}).
+\begin{itemize}
+  \item Within each of the 144 units a Gee's Minnow trap can be placed thereby providing good spatial coverage, and a standardised (and practical) amount of sampling effort.
+  \item Should the 144 units prove to be at a too low resolution (resulting in few units redetecting the species), the results can be aggregated into a 36 unit resolution (i.e. if the species is detected in any of the four quadrants then a detection is recorded at a the spatial unit), thereby giving a degree of monitoring redundancy which should enables greater analytical flexibility .
+  \item Additional effort for gridding up of the monitoring area is not required. Rather the overlapping, preexisting bait station grid can be used.
+  
+\end{itemize}
 
+\clearpage
 
+\subsection*{Discussion}
 
+Currently, the \textbf{reliability} of the four methods (in terms of producing unbiased estimates) can be summarised as:
 
+\begin{itemize}
+  \item Mark-recapture $>$ Occupancy $>$ N-mixture models $>$ Count based indices
+\end{itemize}
+
+\noindent However, given the high probability of getting no recaptures the \textbf{practicality} of the four methods is revised to:
+
+\begin{itemize}
+  \item Occupancy $>$ N-mixture models $>$ Count based indices $>$ Mark-recapture 
+\end{itemize}
 
 
 \end{document}

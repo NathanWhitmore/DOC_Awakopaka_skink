@@ -72,7 +72,27 @@ ggplot()+
                        mid = "white", 
                        high = "black",
                        midpoint = 0.5)+
-  facet_wrap(~Survey)
+  facet_wrap(~Survey)+
+  #ggtitle("Probabilty of abject failure (no recaptures)")+
+  labs(fill = "Failure probability\n",
+       x = "\nDetection probability",
+       y = "Abundance\n")+
+  theme(plot.title = element_text(size = 20))+
+  theme(axis.title = element_text(size = 18))+
+  theme(axis.text.x = element_text(size = 12, angle =90,  vjust = 0.5))+
+  scale_x_continuous(expand = c(0,0))+
+  scale_y_continuous(expand = c(0,0))+
+  theme(panel.spacing = unit(1, "lines"))
+  
 
 
-much.longer %>% group_by(Survey) %>% summarise(mean(Failure))
+ggsave("Probabilty of abject failure2.png", scale = 1.4, height = 6, width =8)
+
+
+# table
+tab <- much.longer %>% group_by(Survey) %>% summarise(mean(Failure))
+tab[,2] <- round(tab[,2], 3)
+
+library(kableExtra)
+
+kable(tab, "latex")
