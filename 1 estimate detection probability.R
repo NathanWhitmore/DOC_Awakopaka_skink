@@ -24,13 +24,13 @@ ggplot()+
   ylab("Detection (p)\n")+
   xlab("\nOccupancy (psi)")+
   theme(axis.text = element_text(size = 12))+
-  theme(axis.title = element_text(size = 16))+
-  ggtitle("Likely vicinity of detection probability")+
-  labs(subtitle = "p = 0.09 and psi = 0.21 results in 0.019 (4/208)")
+  theme(axis.title = element_text(size = 16))
+  #ggtitle("Likely vicinity of detection probability")+
+  # labs(subtitle = "p = 0.09 and psi = 0.21 results in 0.019 (4/208)")
 
 # Assumption:
 # Awakopaka skinks must be characterised by lower occupancy and low detection
-ggsave("Detection probaility.png", scale = 1.2)
+ggsave("Detection probability.png", scale = 1.2)
 
 
 
